@@ -13,3 +13,11 @@ class Blog(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+class Comment(models.Model):
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='comment')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment_text = models.CharField(max_length=500)
+
+    def __str__(self) -> str:
+        return self.comment_text
