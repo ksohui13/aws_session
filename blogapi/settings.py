@@ -27,10 +27,9 @@ for key, value in secrets.items():
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = (os.environ.get('DEBUG', 'TRUE') != 'False')
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -165,3 +164,10 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_ACCESS_KEY_ID = 'AKIAQOUVREBZL25K7X7F' #본인의 액세스키
+AWS_SECRET_ACCESS_KEY  = 'HCNYfzKRPzrXLMqmotCAmqJRWngGMqoxA+kPzSSK' #본인의 시크릿키
+AWS_STORAGE_BUCKET_NAME = 'aws10th' #본인이 만든 버킷 이름
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_S3_REGION_NAME = 'ap-northeast-2'
